@@ -15,7 +15,7 @@ class MaximumSubarraySum {
         SubarrayResult upperHalf = findMaxSumSubarray(array, mid + 1, upperIndex);
         SubarrayResult crossingSubarray = findMaxCrossingSubArray(array, lowerIndex, upperIndex, mid);
 
-        return lowerHalf.getHigherSum(upperHalf, crossingSubarray);
+        return lowerHalf.getHighestSum(upperHalf, crossingSubarray);
     }
 
     private SubarrayResult findMaxCrossingSubArray(int[] array, int lowerIndex, int upperIndex, int mid) {
@@ -66,7 +66,7 @@ class SubarrayResult {
         return sum;
     }
 
-    SubarrayResult getHigherSum(SubarrayResult... others) {
+    SubarrayResult getHighestSum(SubarrayResult... others) {
         Optional<SubarrayResult> maxOfOthers = Arrays.stream(others).max(Comparator.comparing(r -> r.sum));
         if (!maxOfOthers.isPresent() || this.sum > maxOfOthers.get().sum) {
             return this;
