@@ -1,4 +1,4 @@
-package heapsort;
+package sorting;
 
 import org.junit.Test;
 
@@ -10,24 +10,24 @@ public class HeapsortTest {
 
     @Test
     public void shouldSortArrayOfSize1() {
-        int[] a = {5};
-        int[] sortedArray = heapsort.sort(a, a.length);
+        int[] array = {5};
+        int[] sortedArray = heapsort.sort(array, array.length);
         assertEquals(5, sortedArray[0]);
     }
 
     @Test
     public void shouldSortArrayOfSize2() {
-        int[] a = {5, -6};
+        int[] array = {5, -6};
         int[] expectedArray = {-6, 5};
-        int[] actualArray = heapsort.sort(a, a.length);
+        int[] actualArray = heapsort.sort(array, array.length);
         assertArrayEquals(expectedArray, actualArray);
     }
 
     @Test
     public void shouldSortArrayOfSizeGreaterThan2() {
-        int[] a = {5, -6, 9, 0, -2, -3, 1, -6};
+        int[] array = {5, -6, 9, 0, -2, -3, 1, -6};
         int[] expectedArray = {-6, -6, -3, -2, 0, 1, 5, 9};
-        int[] actualArray = heapsort.sort(a, a.length);
+        int[] actualArray = heapsort.sort(array, array.length);
         assertArrayEquals(expectedArray, actualArray);
     }
 }

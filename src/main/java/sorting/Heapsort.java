@@ -1,4 +1,6 @@
-package heapsort;
+package sorting;
+
+import static utils.IntegerUtils.swap;
 
 class Heapsort {
     private int heapSize;
@@ -34,10 +36,6 @@ class Heapsort {
             array[largest] = swap(array[i], array[i] = array[largest]);
             maxHeapify(array, largest);
         }
-    }
-
-    private int swap(int i, int j) {
-        return i;
     }
 
     private int left(int i) {
