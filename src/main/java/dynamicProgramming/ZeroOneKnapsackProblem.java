@@ -1,7 +1,7 @@
 package dynamicProgramming;
 
 import java.util.Arrays;
-
+// Important
 public class ZeroOneKnapsackProblem {
     public int maxProfit(int[] profits, int[] weights, int capacity) {
 //        return recursive(profits, weights, capacity, 0);

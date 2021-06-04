@@ -1,5 +1,5 @@
 package binarySearch;
-
+// Important
 class ElementOccurence {
     int count(int[] arr, int numberToCount) {
         if (arr == null || arr.length == 0) {

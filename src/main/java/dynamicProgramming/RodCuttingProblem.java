@@ -3,7 +3,7 @@ package dynamicProgramming;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+// Important
 public class RodCuttingProblem {
     private int[] prices = {1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
 

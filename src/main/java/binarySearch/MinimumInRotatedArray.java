@@ -1,5 +1,5 @@
 package binarySearch;
-
+// Important
 class MinimumInRotatedArray {
     int findMinimum(int[] arr) {
         if (arr == null) {

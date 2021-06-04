@@ -1,5 +1,5 @@
 package tortoiseAndHare;
-
+// Important
 // Detect cucle in linked list
 public class CycleInLinkedList {
     public boolean hasCycle(Node head) {

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
+// Important
 // Given a binary tree, populate an array to represent its zigzag level order traversal
 public class ZigZagTraversal {
     public List<List<Integer>> traverse(Node root) {
