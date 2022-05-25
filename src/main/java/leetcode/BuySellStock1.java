@@ -1,5 +1,6 @@
 package leetcode;
 
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 public class BuySellStock1 {
     public int maxProfit(int[] prices) {
         return linearComplexity(prices);
