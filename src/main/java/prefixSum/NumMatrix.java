@@ -1,4 +1,4 @@
-package rangeSum;
+package prefixSum;
 
 public class NumMatrix {
     private int[][] prefixSums;

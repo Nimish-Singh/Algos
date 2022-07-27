@@ -1,4 +1,4 @@
-package rangeSum;
+package prefixSum;
 
 // https://leetcode.com/problems/range-sum-query-immutable/
 public class NumArray {

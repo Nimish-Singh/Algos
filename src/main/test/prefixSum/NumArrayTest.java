@@ -1,4 +1,4 @@
-package rangeSum;
+package prefixSum;
 
 import org.junit.Test;
 
