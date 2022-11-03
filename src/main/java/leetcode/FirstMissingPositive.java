@@ -2,8 +2,10 @@ package leetcode;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 // https://leetcode.com/problems/first-missing-positive/
 public class FirstMissingPositive {
@@ -14,6 +16,8 @@ public class FirstMissingPositive {
 //        return minHeapApproach(nums);
 
 //        return sortingApproach(nums);
+
+//        return setApproach(nums);
 
         return linearApproach(nums);
     }
@@ -70,6 +74,28 @@ public class FirstMissingPositive {
             index++;
         }
         return smallest;
+    }
+
+    // T=O(n). S=O(n)
+    private int setApproach(int[] nums) {
+        int max = -1;
+        Set<Integer> positiveNumbers = new HashSet<>();
+        for (int num : nums) {
+            if (num <= 0)
+                continue;
+            if (num > max)
+                max = num;
+            positiveNumbers.add(num);
+        }
+
+        if (positiveNumbers.isEmpty())
+            return 1;
+
+        for (int num = 1; num <= max; num++) {
+            if (!positiveNumbers.contains(num))
+                return num;
+        }
+        return max + 1;
     }
 
     // T=O(nlogn). S=O(n)
