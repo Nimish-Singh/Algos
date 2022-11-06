@@ -7,6 +7,9 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
+// Important: Approach when the elements in array are within range [0, length of array], then we can use the index
+// as markers of element's presence; and then the index can be used to find missing element
+
 // https://leetcode.com/problems/first-missing-positive/
 public class FirstMissingPositive {
     public int firstMissingPositive(int[] nums) {
