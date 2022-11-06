@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class LRUCache {
     private int capacity;
-    private final Node head = new Node(), tail = new Node();
-    private Map<Integer, Node> nodeMap;
+    private final CacheNode head = new CacheNode(), tail = new CacheNode();
+    private Map<Integer, CacheNode> nodeMap;
 
 
     public LRUCache(int capacity) {
@@ -17,7 +17,7 @@ public class LRUCache {
     }
 
     public int get(int key) {
-        Node node = nodeMap.get(key);
+        CacheNode node = nodeMap.get(key);
         if (node != null) {
             remove(node);
             addAtHead(node);
@@ -27,7 +27,7 @@ public class LRUCache {
     }
 
     public void put(int key, int value) {
-        Node node = nodeMap.get(key);
+        CacheNode node = nodeMap.get(key);
         if (node != null) {
             remove(node);
             node.value = value;
@@ -38,7 +38,7 @@ public class LRUCache {
                 remove(tail.prev);
             }
 
-            Node newNode = new Node();
+            CacheNode newNode = new CacheNode();
             newNode.key = key;
             newNode.value = value;
             nodeMap.put(key, newNode);
@@ -46,24 +46,24 @@ public class LRUCache {
         }
     }
 
-    private void addAtHead(Node node) {
-        Node headNext = head.next;
+    private void addAtHead(CacheNode node) {
+        CacheNode headNext = head.next;
         node.next = headNext;
         headNext.prev = node;
         node.prev = head;
         head.next = node;
     }
 
-    private void remove(Node node) {
-        Node previous = node.prev;
-        Node next = node.next;
+    private void remove(CacheNode node) {
+        CacheNode previous = node.prev;
+        CacheNode next = node.next;
 
         previous.next = next;
         next.prev = previous;
     }
 }
 
-class Node {
+class CacheNode {
     int key, value;
-    Node next, prev;
+    CacheNode next, prev;
 }
