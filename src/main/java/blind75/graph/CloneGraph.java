@@ -1,4 +1,4 @@
-package leetcode;
+package blind75.graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
