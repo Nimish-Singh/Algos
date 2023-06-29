@@ -52,5 +52,4 @@ public class EditDistanceTest {
         assertEquals(57, editDistance.minOperations("horsehorsehorsehorsehorsehorsehorsehorsehorsehorsehorsehorsehorsehorsehorsehorse",
                 "rosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosrosros"));
     }
-
 }

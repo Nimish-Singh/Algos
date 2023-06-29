@@ -1,5 +1,9 @@
 package dynamicProgramming;
+
+import java.util.Arrays;
+
 // Important
+// https://leetcode.com/problems/edit-distance
 public class EditDistance {
     public int minOperations(String s1, String s2) {
         if (s1 == null && s2 == null) {
@@ -15,80 +19,74 @@ public class EditDistance {
 
 //        int[][] memo = new int[s1.length() + 1][s2.length() + 1];
 //        for (int[] row : memo) Arrays.fill(row, -1);
-//        return minOperationsToChangeStringsTopDown(s1, s2, s1.length(), s2.length(), memo);
+//        return topDown(s1, s2, s1.length(), s2.length(), memo);
 
-        return minOperationsToChangeStringsBottomUp(s1, s2);
+        return bottomUp(s1, s2);
+//        return recursive(s1, s2);
     }
 
-    private int minOperationsToChangeStringsRecursive(String changeFrom, String changeTo) {
-
-        if (changeFrom.length() == 0) {
-            return changeTo.length();
+    private int recursive(String word1, String word2) {
+        if (word1.length() == 0) {
+            return word2.length();
         }
-        if (changeTo.length() == 0) {
-            return changeFrom.length();
-        }
-
-        if (changeFrom.charAt(0) == changeTo.charAt(0)) {
-            return minOperations(changeFrom.substring(1), changeTo.substring(1));
+        if (word2.length() == 0) {
+            return word1.length();
         }
 
-        if (changeTo.length() == 1) {
-            return 1;
+        if (word1.charAt(0) == word2.charAt(0)) {
+            return recursive(word1.substring(1), word2.substring(1));
         }
 
-        if (changeFrom.charAt(0) == changeTo.charAt(1)) {
-            return 1 + minOperations(changeFrom.substring(1), changeTo.substring(2));
-        }
-
-        return 1 + Math.min(
-                minOperations(changeFrom.substring(1), changeTo.substring(1)),
-                minOperations(changeFrom, changeTo.substring(1))
-        );
+        return 1 + Math.min(recursive(word1, word2.substring(1)), Math.min(
+            recursive(word1.substring(1), word2),
+            recursive(word1.substring(1), word2.substring(1))
+        ));
     }
 
-    private int minOperationsToChangeStringsTopDown(String s1, String s2, int s1Index, int s2Index, int[][] memo) {
-        if (memo[s1Index][s2Index] != -1) {
-            return memo[s1Index][s2Index];
+    private int topDown(String word1, String word2, int index1, int index2, int[][] memo) {
+        if (index1 == 0) {
+            memo[index1][index2] = index2;
+            return memo[index1][index2];
         }
-        if (s1Index == 0) {
-            memo[s1Index][s2Index] = s2Index;
-            return memo[s1Index][s2Index];
-        }
-        if (s2Index == 0) {
-            memo[s1Index][s2Index] = s1Index;
-            return memo[s1Index][s2Index];
+        if (index2 == 0) {
+            memo[index1][index2] = index1;
+            return memo[index1][index2];
         }
 
-        if (s1.charAt(s1Index - 1) == s2.charAt(s2Index - 1)) {
-            memo[s1Index][s2Index] = minOperationsToChangeStringsTopDown(s1, s2, s1Index - 1, s2Index - 1, memo);
-            return memo[s1Index][s2Index];
+        if (memo[index1][index2] != -1) {
+            return memo[index1][index2];
         }
 
-        memo[s1Index][s2Index] = 1 + Math.min(
-                minOperationsToChangeStringsTopDown(s1, s2, s1Index, s2Index - 1, memo),
-                Math.min(minOperationsToChangeStringsTopDown(s1, s2, s1Index - 1, s2Index, memo),
-                        minOperationsToChangeStringsTopDown(s1, s2, s1Index - 1, s2Index - 1, memo))
-        );
-        return memo[s1Index][s2Index];
+        if (word1.charAt(index1 - 1) == word2.charAt(index2 - 1)) {
+            memo[index1][index2] = topDown(word1, word2, index1 - 1, index2 - 1, memo);
+            return memo[index1][index2];
+        }
+
+        memo[index1][index2] = 1 + Math.min(topDown(word1, word2, index1, index2 - 1, memo), Math.min(
+            topDown(word1, word2, index1 - 1, index2, memo),
+            topDown(word1, word2, index1 - 1, index2 - 1, memo)
+        ));
+        return memo[index1][index2];
     }
 
-    private int minOperationsToChangeStringsBottomUp(String s1, String s2) {
+    private int bottomUp(String s1, String s2) {
         int[][] memo = new int[s1.length() + 1][s2.length() + 1];
-        for (int i = 0; i <= s1.length(); i++) {
-            for (int j = 0; j <= s2.length(); j++) {
-                if (i == 0)
-                    memo[i][j] = j;
-                else if (j == 0)
-                    memo[i][j] = i;
-                else if (s1.charAt(i - 1) == s2.charAt(j - 1))
-                    memo[i][j] = memo[i - 1][j - 1];
+
+        for (int index1 = 0; index1 <= s1.length(); index1++) {
+            for (int index2 = 0; index2 <= s2.length(); index2++) {
+                if (index1 == 0)
+                    memo[index1][index2] = index2;
+                else if (index2 == 0)
+                    memo[index1][index2] = index1;
+                else if (s1.charAt(index1 - 1) == s2.charAt(index2 - 1))
+                    memo[index1][index2] = memo[index1 - 1][index2 - 1];
                 else
-                    memo[i][j] = 1 + Math.min(
-                            memo[i][j - 1], Math.min(
-                                    memo[i - 1][j], memo[i - 1][j - 1]));
+                    memo[index1][index2] = 1 + Math.min(memo[index1 - 1][index2 - 1], Math.min(
+                        memo[index1][index2 - 1], memo[index1 - 1][index2]
+                    ));
             }
         }
+
         return memo[s1.length()][s2.length()];
     }
 }
