@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MostVisitedPageSequenceTest {
     private final MostVisitedPageSequence mostVisitedPageSequence = new MostVisitedPageSequence();
 
-    private List<String> pages = List.of(
+    private final List<String> pages = List.of(
             "10:10:01 1001 A",
             "10:10:02 1001 B",
             "10:10:03 1001 C",
@@ -23,6 +23,6 @@ public class MostVisitedPageSequenceTest {
 
     @Test
     public void sampleInput1() {
-        assertEquals("BCD", mostVisitedPageSequence.findMaxSequence(pages));
+        assertEquals("BCD", mostVisitedPageSequence.findMaxSequenceOptimised(pages));
     }
 }
